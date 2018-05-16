@@ -1,4 +1,4 @@
-# 32.1-4
+# 32.1-4 String matching with gap character \*
 
 The Question:
 Suppose we allow the pattern P to contain occurrences of a gap character \* that can match an arbitrary string of characters (even one of zero length). 
