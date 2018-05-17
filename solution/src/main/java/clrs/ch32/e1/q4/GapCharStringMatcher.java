@@ -1,3 +1,5 @@
+package clrs.ch32.e1.q4;
+
 public class GapCharStringMatcher {
 
     public static boolean isMatch(String T, String P) {
@@ -45,3 +47,4 @@ public class GapCharStringMatcher {
 
 
 }
+
