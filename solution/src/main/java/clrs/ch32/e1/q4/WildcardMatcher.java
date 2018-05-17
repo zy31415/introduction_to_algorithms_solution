@@ -3,7 +3,11 @@ package clrs.ch32.e1.q4;
 public class WildcardMatcher {
 
     // Dynamic Programming - used for memorization
-    static int [][] memo;
+    private static int [][] memo;
+
+    private static final int UNDEFINED = -1;
+    private static final int TRUE = 1;
+    private static final int FALSE = 0;
 
     public static boolean isMatch(String T, String P) {
         int n = T.length();
@@ -14,11 +18,11 @@ public class WildcardMatcher {
         return isMatch(T, n, P, m);
     }
 
-    static boolean isMatch(String T, int s, String P, int t) {
+    private static boolean isMatch(String T, int s, String P, int t) {
 
         // memo:
-        if (memo[s][t] != -1)
-            return memo[s][t] == 1;
+        if (memo[s][t] != UNDEFINED)
+            return memo[s][t] == TRUE;
 
         boolean res;
 
@@ -36,16 +40,16 @@ public class WildcardMatcher {
             res = s != 0 && P.charAt(t-1) == T.charAt(s-1) && isMatch(T, s-1, P, t-1);
         }
 
-        memo[s][t] = res ? 1 : 0;
+        memo[s][t] = res ? TRUE : FALSE;
         return res;
     }
 
-    static void initMemo(int n, int m) {
+    private static void initMemo(int n, int m) {
         memo = new int[n+1][m+1];
 
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
-                memo[i][j] = -1;
+                memo[i][j] = UNDEFINED;
             }
         }
     }
