@@ -67,4 +67,10 @@ public class RabinKarpMatcherTest {
         assertTrue(matcher.match("~abAB12!@##()[].", "."));
     }
 
+    @Test
+    public void test_ascii_prod_overflow() {
+        RabinKarpMatcher matcher = new RabinKarpMatcher(15485863);
+        assertTrue(matcher.match("aworld", "world"));
+    }
+
 }

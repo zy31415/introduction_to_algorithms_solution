@@ -117,7 +117,10 @@ public class RabinKarpMatcher {
             // Rolling hash
             if (s < n-m) {
                 // Use Math.floorMod to make sure that module is positive
-                t = floorMod((base*(t - hash(T.charAt(s)) * h) + hash(T.charAt(s+m))), modulus);
+                // User multiple steps to compute to prevent overflow:
+                //  't - hash(T.charAt(s)) * h' could be very large thus module it before next step.
+                int r = (t - hash(T.charAt(s)) * h) % modulus;
+                t = floorMod((base * r + hash(T.charAt(s+m))), modulus);
             }
         }
 
@@ -143,33 +146,4 @@ public class RabinKarpMatcher {
     public int getNumSpuriousHits() {
         return numSpuriousHits;
     }
-
-//    public static class Builder {
-//
-//        public static final char [] DecimalDigits = "0123456789".toCharArray();
-//        public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-//        public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-//
-//        private Map<Character, Integer> map = null;
-//        private int modulus = -1;
-//
-//        public Builder setAlphabets(char [] alphabets) {
-//            map = new HashMap<>();
-//            for (int i = 0; i < alphabets.length; i++) {
-//                map.put(alphabets[i], i);
-//            }
-//
-//            return this;
-//        }
-//
-//        public Builder setModulus(int modulus) {
-//            this.modulus = modulus;
-//            return this;
-//        }
-//
-//        public RabinKarpMatcher build() {
-//            if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
-//            return new RabinKarpMatcher(map, modulus);
-//        }
-//    }
 }
