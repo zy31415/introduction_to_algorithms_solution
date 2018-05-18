@@ -143,33 +143,4 @@ public class RabinKarpMatcher {
     public int getNumSpuriousHits() {
         return numSpuriousHits;
     }
-
-//    public static class Builder {
-//
-//        public static final char [] DecimalDigits = "0123456789".toCharArray();
-//        public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-//        public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-//
-//        private Map<Character, Integer> map = null;
-//        private int modulus = -1;
-//
-//        public Builder setAlphabets(char [] alphabets) {
-//            map = new HashMap<>();
-//            for (int i = 0; i < alphabets.length; i++) {
-//                map.put(alphabets[i], i);
-//            }
-//
-//            return this;
-//        }
-//
-//        public Builder setModulus(int modulus) {
-//            this.modulus = modulus;
-//            return this;
-//        }
-//
-//        public RabinKarpMatcher build() {
-//            if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
-//            return new RabinKarpMatcher(map, modulus);
-//        }
-//    }
 }
