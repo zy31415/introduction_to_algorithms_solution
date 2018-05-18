@@ -10,6 +10,10 @@ import static java.lang.Math.floorMod;
 
 public class RabinKarpMatcher {
 
+    public static final char [] DecimalDigits = "0123456789".toCharArray();
+    public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+
     private int base;
     private Map<Character, Integer> map = null;
 
@@ -19,16 +23,46 @@ public class RabinKarpMatcher {
 
     private int numSpuriousHits;
 
-    RabinKarpMatcher(Map<Character, Integer> map, int modulus) {
-        this.map = map;
+    // constructors:
+    public RabinKarpMatcher() {
+        // use all ascii code as the alphabet set.
+        map = null;
+        base = 128;
 
-        // if map is null, use all ascii code as the alphabet set.
-        if (map == null) {
-            base = 128;
-        } else {
-            base = map.size();
+        setModulus(15485863);
+    }
+
+    public RabinKarpMatcher(int modulus) {
+        // use all ascii code as the alphabet set.
+        map = null;
+        base = 128;
+
+        setModulus(modulus);
+    }
+
+    public RabinKarpMatcher(char [] alphabets, int modulus) {
+        map = new HashMap<>();
+        for (int i = 0; i < alphabets.length; i++) {
+            map.put(alphabets[i], i);
         }
 
+        base = map.size();
+        setModulus(modulus);
+    }
+
+    public RabinKarpMatcher(Map<Character, Integer> map, int modulus) {
+        if (map == null) {
+            throw  new IllegalStateException("Map cannot be null.");
+        }
+
+        this.map = map;
+        base = map.size();
+
+        setModulus(modulus);
+    }
+
+    private void setModulus(int modulus) {
+        if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
         this.modulus = modulus;
     }
 
@@ -110,32 +144,32 @@ public class RabinKarpMatcher {
         return numSpuriousHits;
     }
 
-    public static class Builder {
-
-        public static final char [] DecimalDigits = "0123456789".toCharArray();
-        public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-        public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
-        private Map<Character, Integer> map = null;
-        private int modulus = -1;
-
-        public Builder setAlphabets(char [] alphabets) {
-            map = new HashMap<>();
-            for (int i = 0; i < alphabets.length; i++) {
-                map.put(alphabets[i], i);
-            }
-
-            return this;
-        }
-
-        public Builder setModulus(int modulus) {
-            this.modulus = modulus;
-            return this;
-        }
-
-        public RabinKarpMatcher build() {
-            if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
-            return new RabinKarpMatcher(map, modulus);
-        }
-    }
+//    public static class Builder {
+//
+//        public static final char [] DecimalDigits = "0123456789".toCharArray();
+//        public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+//        public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+//
+//        private Map<Character, Integer> map = null;
+//        private int modulus = -1;
+//
+//        public Builder setAlphabets(char [] alphabets) {
+//            map = new HashMap<>();
+//            for (int i = 0; i < alphabets.length; i++) {
+//                map.put(alphabets[i], i);
+//            }
+//
+//            return this;
+//        }
+//
+//        public Builder setModulus(int modulus) {
+//            this.modulus = modulus;
+//            return this;
+//        }
+//
+//        public RabinKarpMatcher build() {
+//            if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
+//            return new RabinKarpMatcher(map, modulus);
+//        }
+//    }
 }
