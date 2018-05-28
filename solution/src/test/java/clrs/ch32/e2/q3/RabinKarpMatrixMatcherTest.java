@@ -118,4 +118,24 @@ public class RabinKarpMatrixMatcherTest {
         matcher.match(T, P);
         assertEquals(2, matcher.results.size());
     }
+
+    @Test
+    public void testMatch_ascii_multiple_match_low_module() {
+        char [][] P = {
+                {'w', 'e'},
+                {'x', 'c'}
+        };
+        char [][] T = {
+                "asdfg".toCharArray(),
+                "qwert".toCharArray(),
+                "zxcvb".toCharArray(),
+                "akiwe".toCharArray(),
+                "kcixc".toCharArray()
+        };
+
+        RabinKarpMatrixMatcher matcher = new RabinKarpMatrixMatcher();
+        matcher.setModulus(5);
+        matcher.match(T, P);
+        assertEquals(2, matcher.results.size());
+    }
 }

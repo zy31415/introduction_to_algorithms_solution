@@ -51,7 +51,7 @@ public class RabinKarpMatrixMatcher extends Hasher {
             for (int j =0 ; j <= n - m; j++) {
                 if (t == p) {
                     if (isMatched(i, j)) {
-                        System.out.printf("Found match at (%d, %d)", i, j);
+                        System.out.printf("Found match at (%d, %d).\n", i, j);
                         results.add(ImmutableList.of(i, j));
                     }
                 }
