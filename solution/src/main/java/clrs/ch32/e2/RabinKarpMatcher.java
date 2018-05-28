@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static java.lang.Math.floorMod;
 
-public class RabinKarpMatcher {
+public class RabinKarpMatcher extends Hasher {
 
     public static final char [] DecimalDigits = "0123456789".toCharArray();
     public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
