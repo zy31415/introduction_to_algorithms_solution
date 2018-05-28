@@ -1,16 +1,17 @@
 package clrs.ch32.e2.q2;
 
+import clrs.ch32.e2.Hasher;
 import com.google.common.collect.ImmutableList;
 
 import java.util.*;
 
 import static java.lang.Math.floorMod;
 
-public class RabinKarpMultiplePatternsMatcher {
+public class RabinKarpMultiplePatternsMatcher extends Hasher {
 
-    // Use ascii code.
-    int base = 128;
-    int modulus = 15485863;
+//    // Use ascii code.
+//    int base = 128;
+//    int modulus = 15485863;
 
     private Integer [] rollingHash;
     private Map<Integer, Integer> targetHash;
@@ -119,9 +120,9 @@ public class RabinKarpMultiplePatternsMatcher {
         }
     }
 
-    private int hash(char c) {
-        return (int) c;
-    }
+//    private int hash(char c) {
+//        return (int) c;
+//    }
 
     private boolean verifyMatched(String T, int s, String P) {
         for (int i = 0; i < P.length(); i++) {

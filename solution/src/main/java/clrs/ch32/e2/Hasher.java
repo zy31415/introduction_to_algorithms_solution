@@ -4,15 +4,19 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ *  Provide hashing capability.
+ */
 public class Hasher {
     public static final char [] DecimalDigits = "0123456789".toCharArray();
     public static final char [] Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     public static final char [] LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
-    private int base = 128;
+    protected int base = 128;
     private Map<Character, Integer> map = null;
 
-    private int modulus = 15485863;
+    protected int modulus = 15485863;
 
     void setAlphabets(char [] alphabets) {
         map = new HashMap<>();
@@ -28,7 +32,7 @@ public class Hasher {
         this.modulus = modulus;
     }
 
-    int hash(char c) throws InvalidParameterException {
+    protected int hash(char c) throws InvalidParameterException {
 
         // if map is null, use ascii code of the character.
         if (map == null) {
