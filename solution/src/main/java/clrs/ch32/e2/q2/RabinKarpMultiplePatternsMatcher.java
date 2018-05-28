@@ -26,7 +26,7 @@ public class RabinKarpMultiplePatternsMatcher extends Hasher {
         setModulus(modulus);
     }
 
-    private void setModulus(int modulus) {
+    public void setModulus(int modulus) {
         if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
         this.modulus = modulus;
     }

@@ -18,7 +18,7 @@ public class Hasher {
 
     protected int modulus = 15485863;
 
-    void setAlphabets(char [] alphabets) {
+    public void setAlphabets(char [] alphabets) {
         map = new HashMap<>();
         for (int i = 0; i < alphabets.length; i++) {
             map.put(alphabets[i], i);
@@ -27,7 +27,7 @@ public class Hasher {
         base = map.size();
     }
 
-    void setModulus(int modulus) {
+    public void setModulus(int modulus) {
         if (modulus <= 0) throw new IllegalStateException("Modulus are not set (correctly).");
         this.modulus = modulus;
     }
